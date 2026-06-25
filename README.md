@@ -4,7 +4,7 @@
 
 ![Application](docs/application.png)
 
-## Authors
+## Author
 
 - Eviatar Cohen
 
@@ -12,13 +12,11 @@
 
 # Overview
 
-This project implements a distributed computational graph using the Publish/Subscribe (Pub/Sub) architecture.
+This project implements a computational graph based on the Publish/Subscribe (Pub/Sub) architecture.
 
-The system allows users to deploy a computational graph from a configuration file and publish values to topics through a web interface.
+The application allows users to deploy a computational graph from a configuration file, publish values to input topics through a web interface, and automatically propagate computations across the graph.
 
-Whenever a value is published, all dependent agents are automatically activated, compute their output, and publish new values to other topics.
-
-The project also contains a lightweight HTTP server implemented from scratch without external frameworks.
+The project also includes a lightweight HTTP server implemented entirely in Java without external frameworks.
 
 ---
 
@@ -26,34 +24,36 @@ The project also contains a lightweight HTTP server implemented from scratch wit
 
 - Publish / Subscribe messaging system
 - Dynamic computational graph
-- HTTP server implementation
+- Configuration-based graph deployment
+- Lightweight HTTP server
 - HTML web interface
-- Configuration loader
-- Automatic graph deployment
-- Parallel execution using ParallelAgent
 - Automatic graph visualization
+- Parallel execution using `ParallelAgent`
+- Extensible computational agents
 
 ---
 
 # Project Structure
 
-```
+```text
 src
 │
 ├── configs
+│   ├── BinOpAgent.java
 │   ├── Config.java
+│   ├── DivAgent.java
 │   ├── GenericConfig.java
-│   ├── PlusAgent.java
 │   ├── IncAgent.java
 │   ├── MinusAgent.java
 │   ├── MulAgent.java
-│   └── DivAgent.java
+│   └── PlusAgent.java
 │
 ├── graph
 │   ├── Agent.java
 │   ├── Graph.java
 │   ├── Message.java
 │   ├── Node.java
+│   ├── ParallelAgent.java
 │   ├── Topic.java
 │   └── TopicManagerSingleton.java
 │
@@ -79,31 +79,34 @@ src
 
 # Configuration Files
 
-The project loads computational graphs from configuration files located in:
+Configuration files are located in:
 
-```
+```text
 files_config/
 ```
 
-Example:
+The demo configuration used in this project is:
 
+```text
+math.conf
 ```
-configs.PlusAgent
-A,B
-C
 
-configs.IncAgent
-C
-D
+It computes the following expressions:
+
+```text
+C = A + B
+D = A - B
+E = C × D
+F = E ÷ B
 ```
 
 ---
 
 # HTML Files
 
-The web interface is located in
+The web interface is located in:
 
-```
+```text
 files_html/
 ```
 
@@ -118,9 +121,9 @@ Files:
 
 # How to Run
 
-1. Clone the repository
+1. Clone the repository:
 
-```
+```bash
 git clone https://github.com/eviatar988/AdvancedProgrammingProject.git
 ```
 
@@ -128,51 +131,49 @@ git clone https://github.com/eviatar988/AdvancedProgrammingProject.git
 
 3. Build the project.
 
-4. Run
+4. Run:
 
-```
+```text
 Main.java
 ```
 
-5. Open your browser:
+5. Open:
 
-```
+```text
 http://localhost:8080/app/index.html
 ```
 
-6. Upload one of the configuration files.
+6. Upload:
 
-7. Publish values to topics.
+```text
+math.conf
+```
+
+7. Publish values.
 
 ---
 
 # Example
 
-Deploy
+Input:
 
-```
-simple.conf
-```
-
-Publish
-
-```
-A = 5
-B = 8
+```text
+A = 10
+B = 2
 ```
 
-The graph computes
+Output:
 
-```
-C = A + B = 13
-D = C + 1 = 14
+```text
+C = 12
+D = 8
+E = 96
+F = 48
 ```
 
 ---
 
-# Extra Features
-
-Besides the required implementation, the project also supports additional computational agents:
+# Implemented Agents
 
 - PlusAgent
 - IncAgent
@@ -180,7 +181,7 @@ Besides the required implementation, the project also supports additional comput
 - MulAgent
 - DivAgent
 
-This makes the computational graph easily extensible without changing the server implementation.
+The architecture allows additional computational agents to be added without modifying the server implementation.
 
 ---
 
@@ -189,15 +190,9 @@ This makes the computational graph easily extensible without changing the server
 - Java
 - HTML
 - CSS
-- Java Threads
-- TCP Sockets
 - HTTP
+- TCP Sockets
+- Java Threads
 - IntelliJ IDEA
 - Git
 - GitHub
-
----
-
-# Authors
-
-Eviatar Cohen
