@@ -1,5 +1,9 @@
 # Advanced Programming Project
 
+## Application Screenshot
+
+![Application](docs/application.png)
+
 ## Authors
 
 - Eviatar Cohen
