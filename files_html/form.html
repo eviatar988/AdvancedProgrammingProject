@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+    <style>
+        body { font-family:Arial, sans-serif; padding:14px; background:#fafafa; }
+        form { background:white; padding:12px; margin-bottom:18px; border:1px solid #ddd; border-radius:10px; }
+        label { display:block; margin-top:8px; font-size:14px; }
+        input { width:100%; box-sizing:border-box; margin-top:4px; padding:7px; }
+        button, input[type=submit] { margin-top:10px; padding:7px 12px; cursor:pointer; width:auto; }
+        h3 { margin:0 0 8px; }
+    </style>
+</head>
+<body>
+<form action="http://localhost:8080/upload" method="post" enctype="multipart/form-data" target="graphFrame">
+    <h3>Deploy configuration</h3>
+    <label>Configuration file:</label>
+    <input type="file" name="config" required>
+    <input type="submit" value="deploy">
+</form>
+
+<form action="http://localhost:8080/publish" method="get" target="tableFrame">
+    <h3>Publish message</h3>
+    <label>Topic name:</label>
+    <input type="text" name="topic" placeholder="A" required>
+    <label>Message:</label>
+    <input type="text" name="message" placeholder="5" required>
+    <input type="submit" value="Send">
+</form>
+</body>
+</html>
