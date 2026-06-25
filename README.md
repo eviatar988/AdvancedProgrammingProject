@@ -33,6 +33,37 @@ The project also includes a lightweight HTTP server implemented entirely in Java
 
 ---
 
+---
+
+# Design Decisions
+
+The project was designed in a modular way in order to separate the different responsibilities of the system.
+
+### HTTP Server
+
+The server package implements a lightweight multithreaded HTTP server that receives client requests and dispatches them to the appropriate servlet according to the request path and HTTP method.
+
+### Publish / Subscribe System
+
+The graph package implements a Publish/Subscribe architecture. Topics are responsible for distributing messages to subscribed agents, while each agent performs its own computation independently.
+
+### Configuration Loader
+
+The computational graph is not hard-coded. Instead, it is created dynamically by loading a configuration file. This allows different computational graphs to be deployed without changing the source code.
+
+### Graph Visualization
+
+The graph is automatically converted into an HTML representation using `HtmlGraphWriter`, allowing the deployed graph to be visualized directly from the browser.
+
+### Extensibility
+
+The project was designed to be easily extensible. New computational agents can be added simply by implementing a new agent class and referencing it from a configuration file, without modifying the server or the user interface.
+
+---
+
+
+
+
 # Project Structure
 
 ```text
