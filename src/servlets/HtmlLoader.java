@@ -8,7 +8,26 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Servlet that loads static HTML files from a folder.
+ * Servlet that serves static HTML files from a configurable directory.
+ *
+ * <p>This servlet is typically registered to handle requests whose URI
+ * begins with <code>/app</code>. When a client requests an HTML page,
+ * the servlet locates the corresponding file inside the configured
+ * directory and returns it as an HTTP response.
+ *
+ * <p>Example:
+ *
+ * <pre>{@code
+ * HTTPServer server = new MyHTTPServer(8080, 5);
+ *
+ * server.addServlet("GET", "/app",
+ *         new HtmlLoader("files_html"));
+ *
+ * server.start();
+ * }</pre>
+ *
+ * <p>If the requested file does not exist, a standard HTTP 404 response
+ * is returned.
  */
 public class HtmlLoader implements Servlet {
     private final Path htmlDir;
