@@ -229,3 +229,12 @@ The architecture allows additional computational agents to be added without modi
 - IntelliJ IDEA
 - Git
 - GitHub
+
+
+
+# Javadoc
+
+The generated API documentation is available under:
+
+```text
+docs/javadoc/index.html
